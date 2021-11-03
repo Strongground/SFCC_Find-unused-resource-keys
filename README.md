@@ -18,9 +18,11 @@ Since this might touch thousands of keys in hundreds of files, you are advised t
 ### Notes:
 Currently, the tool does not handle duplicate files very well. If you have overloaded properties files in cartridge, i.e. with exact same name but differing contents, the last processed one will win. In this case I recommend using the tool in each cartridge separately. This should also be possible with multiple instances of the script simultaneously, with no issues - just use a different output directory for each instance.
 
+Thanks for the hint, [Daniel Anechitoaie](https://github.com/danechitoaie)
+
 Having _-v/--verbose_ flag lengthens the runtime considerably. If you want to just see what happens, before the actual final run, this is fine. During final run, it makes sense to either not set verbose flag or reroute the output to another file via `python3 delete-unused-resource-keys.py -sd some_dir -td another_dir -v > console_output.txt`.
 
-Some files are ignored during lookup. Those are defined in the `is_ignored_folder` function. There is a simple array inside that function containing file endings. Feel free to change them to suit your needs.
+Some folders are ignored during lookup. Those are defined in the `is_ignored_folder` function. There is a simple array inside that function containing folder name fragments. Feel free to change them to suit your needs.
 
 The file types where the script is looking for resource keys is also described in an array called 'lookup_files', defined at the top of the script for convenience. You can just edit the array.
 
