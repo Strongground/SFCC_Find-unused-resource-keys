@@ -15,7 +15,9 @@ Since this might touch thousands of keys in hundreds of files, you are advised t
 4. Open the help page of the tool by executing, on a CLI: `delete-unused-resource-keys.py -h`. All arguments are explained so you can see what you need.
 5. Example command: `python3 delete-unused-resource-keys.py -sd cartridges -td cleaned_properties -l -v`, looking through all resource files in the 'cartridges' folder, putting cleaned versions of those into 'cleaned_properties' folder. It also writes a logfile (put in the target directory if given, else next to script file) called 'cleaning_report.txt'. It is also set to verbose, so outputting additional information during runtime.
 
-### Notes: 
+### Notes:
+Currently, the tool does not handle duplicate files very well. If you have overloaded properties files in cartridge, i.e. with exact same name but differing contents, the last processed one will win. In this case I recommend using the tool in each cartridge separately. This should also be possible with multiple instances of the script simultaneously, with no issues - just use a different output directory for each instance.
+
 Having _-v/--verbose_ flag lengthens the runtime considerably. If you want to just see what happens, before the actual final run, this is fine. During final run, it makes sense to either not set verbose flag or reroute the output to another file via `python3 delete-unused-resource-keys.py -sd some_dir -td another_dir -v > console_output.txt`.
 
 Some files are ignored during lookup. Those are defined in the `is_ignored_folder` function. There is a simple array inside that function containing file endings. Feel free to change them to suit your needs.
